@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Producto from './Producto';
-import Buscador from './Buscador';
+import Producto from './../Producto/Producto';
+import Buscador from './../Buscador/Buscador';
 import './Productos.css';
 
 class Productos extends Component {

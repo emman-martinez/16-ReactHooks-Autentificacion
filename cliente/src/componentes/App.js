@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Router from './Router';
-import Imagen from './Imagen';
+import Imagen from './Imagen/Imagen';
 import './../css/App.css';
 
 class App extends Component {
