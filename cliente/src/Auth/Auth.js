@@ -33,8 +33,9 @@ export default class Auth {
     this.auth0.parseHash((err, authResult) => {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
+        history.replace('/productos');
       } else if (err) {
-        history.replace('/home');
+        history.replace('/productos');
         console.log(err);
         alert(`Error: ${err.error}. Check the console for further details.`);
       }
@@ -42,8 +43,16 @@ export default class Auth {
   }
 
   getAccessToken() {
-    return this.accessToken;
+    const accessToken = localStorage.getItem('access_token');
+    if(!accessToken) {
+      return new Error('Hubo un error al generar el token');
+    }
+    return accessToken;
   }
+
+  // getAccessToken() {
+  //   return this.accessToken;
+  // }
 
   getIdToken() {
     return this.idToken;
@@ -59,19 +68,19 @@ export default class Auth {
     this.idToken = authResult.idToken;
     this.expiresAt = expiresAt;
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the productos route
+    history.replace('/productos');
   }
 
   renewSession() {
     this.auth0.checkSession({}, (err, authResult) => {
-       if (authResult && authResult.accessToken && authResult.idToken) {
-         this.setSession(authResult);
-       } else if (err) {
-         this.logout();
-         console.log(err);
-         alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
-       }
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        this.logout();
+        console.log(err);
+        alert(`Could not get a new token (${err.error}: ${err.error_description}).`);
+      }
     });
   }
 
@@ -88,8 +97,8 @@ export default class Auth {
       returnTo: window.location.origin
     });
 
-    // navigate to the home route
-    history.replace('/home');
+    // navigate to the productos route
+    history.replace('/productos');
   }
 
   isAuthenticated() {

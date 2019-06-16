@@ -53,42 +53,46 @@ class Router extends Component {
 
         return(
             <BrowserRouter>
-                { /* Componente: Header */ }
-                <Header></Header>
-                { /* Componente: Navegacion */ }
-                <Navegacion></Navegacion>
-                <Switch>
-                    <Route exact path="/" render={() => (
-                         /* Componente: Productos */
-                        <Productos
-                                    productos={resultado}
-                                    busquedaProducto={this.busquedaProducto}
-                        ></Productos>
-                    )}></Route>
-                    {/* Componente: Nosotros */}
-                    <Route exact path="/nosotros" component={Nosotros}></Route>
-                    <Route exact path="/productos" render={() => (
-                        <Productos
-                                    productos={resultado}
-                                    busquedaProducto={this.busquedaProducto}
-                        ></Productos>
-                    )}></Route>
-                    <Route exact path="/producto/:productoId" render={(props) => {
-                        // console.log(props);
-                        let idProducto = props.location.pathname.replace('/producto/', '');
-                        // console.log(idProducto);
-                        return(
-                            /* Componente: SingleProducto */
-                            <SingleProducto
-                                            producto={this.state.productos[idProducto]}
-                            ></SingleProducto>
-                        )
-                    }}></Route>
-                    { /* Componente: Contacto */}
-                    <Route exact path="/contacto" component={Contacto}></Route>
-                    { /* Componente: Error */}
-                    <Route component={Error}></Route>
-                </Switch> 
+                <div className="contenedor">
+                    { /* Componente: Header */ }
+                    <Header></Header>
+                    { /* Componente: Navegacion */ }
+                    <Navegacion></Navegacion>
+                    <Switch>
+                        <Route exact path="/" render={() => (
+                            /* Componente: Productos */
+                            <Productos
+                                        productos={resultado}
+                                        busquedaProducto={this.busquedaProducto}
+                            ></Productos>
+                        )}></Route>
+                        {/* Componente: Nosotros */}
+                        <Route exact path="/nosotros" component={Nosotros}></Route>
+                        { /* Componente: Productos */ }
+                        <Route exact path="/productos" render={() => (
+                            <Productos
+                                        productos={resultado}
+                                        busquedaProducto={this.busquedaProducto}
+                            ></Productos>
+                        )}></Route>
+                        { /* Componente: SingleProducto */ }
+                        <Route exact path="/producto/:productoId" render={(props) => {
+                            // console.log(props);
+                            let idProducto = props.location.pathname.replace('/producto/', '');
+                            // console.log(idProducto);
+                            return(
+                                <SingleProducto
+                                                producto={this.state.productos[idProducto]}
+                                                key={idProducto}
+                                ></SingleProducto>
+                            )
+                        }}></Route>
+                        { /* Componente: Contacto */}
+                        <Route exact path="/contacto" component={Contacto}></Route>
+                        { /* Componente: Error */}
+                        <Route component={Error}></Route>
+                    </Switch>
+                </div> 
             </BrowserRouter>
         )
     }
