@@ -11,11 +11,12 @@ export default class Auth {
     domain: AUTH_CONFIG.domain,
     clientID: AUTH_CONFIG.clientID,
     redirectUri: AUTH_CONFIG.callbackUrl,
+    audience: AUTH_CONFIG.apiURL,
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'read:productos'
   });
 
-  constructor() {
+  constructor() { 
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
@@ -42,20 +43,28 @@ export default class Auth {
     });
   }
 
-  getAccessToken() {
-    const accessToken = localStorage.getItem('access_token');
-    if(!accessToken) {
-      return new Error('Hubo un error al generar el token');
-    }
-    return accessToken;
-  }
-
   // getAccessToken() {
-  //   return this.accessToken;
+  //   const accessToken = localStorage.getItem('access_token');
+  //   if(!accessToken) {
+  //     return new Error('Hubo un error al generar el token');
+  //   }
+  //   return accessToken;
   // }
 
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token');
+    console.log(accessToken);
+    if(accessToken === null){
+      return new Error('Hubo un error al generar el Token');
+    } else if (!accessToken) {
+      return new Error('Hubo un error al generar el Token');
+    }
+    console.log(accessToken); 
+    return accessToken; 
+  }
+
   getIdToken() {
-    return this.idToken;
+    return this.idToken; 
   }
 
   setSession(authResult) {

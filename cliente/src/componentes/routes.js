@@ -31,7 +31,9 @@ export const makeMainRoutes = () => {
           <Header></Header>
 
           { /* Componente: Navegacion */ }
-          <Navegacion></Navegacion>
+          <Navegacion
+                      auth={auth}
+          ></Navegacion>
 
           { /* *****_____Rutas_____***** */ } 
 
@@ -39,7 +41,7 @@ export const makeMainRoutes = () => {
           <Route exact path="/" render={(props) => (
             <Productos
                         // productos={resultado}
-                        busquedaProducto={this.busquedaProducto}
+                        // busquedaProducto={this.busquedaProducto}
                         auth={auth} {...props}
             ></Productos>
           )}></Route>
@@ -54,7 +56,7 @@ export const makeMainRoutes = () => {
           <Route exact path="/productos" render={(props) => (
             <Productos
                         // productos={resultado}
-                        busquedaProducto={this.busquedaProducto}
+                        // busquedaProducto={this.busquedaProducto}
                         auth={auth} {...props}
             ></Productos>
           )}></Route>
