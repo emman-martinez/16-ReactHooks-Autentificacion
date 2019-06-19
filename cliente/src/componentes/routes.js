@@ -30,35 +30,68 @@ export const makeMainRoutes = () => {
           { /* Componente: Header */ }
           <Header></Header>
 
-          { /* Componente: Navegacion */ }
-          <Navegacion
-                      auth={auth}
-          ></Navegacion>
-
           { /* *****_____Rutas_____***** */ } 
 
           { /* Componente: Productos */ }
           <Route exact path="/" render={(props) => (
-            <Productos
-                        // productos={resultado}
-                        // busquedaProducto={this.busquedaProducto}
-                        auth={auth} {...props}
-            ></Productos>
+            
+            <React.Fragment>
+              {/* Componente: Navegacion */ }
+              <Navegacion
+                            auth={auth} {...props}
+              ></Navegacion>
+              {/* Componente: Productos */}
+              <Productos
+                          // productos={resultado}
+                          // busquedaProducto={this.busquedaProducto}
+                          auth={auth} {...props}
+              ></Productos>
+            </React.Fragment>
+            
           )}></Route>
 
           { /* Componente: Nosotros */ }
-          <Route exact path="/nosotros" component={Nosotros}></Route>
+          <Route exact path="/nosotros" render={(props) => (
+            
+            <React.Fragment>
+              {/* Componente: Navegacion */ }
+              <Navegacion
+                            auth={auth} {...props}
+              ></Navegacion>
+              {/* Componente: Nosotros */}
+              <Nosotros></Nosotros>
+            </React.Fragment>
+          
+          )}></Route>
 
           { /* Componente: Contacto */}
-          <Route exact path="/contacto" component={Contacto}></Route>
+          <Route exact path="/contacto" render={(props) => (
+            <React.Fragment>
+              <Navegacion
+                            auth={auth} {...props}
+              ></Navegacion>
+              <Contacto
+                          // productos={resultado}
+                          // busquedaProducto={this.busquedaProducto}
+                          auth={auth} {...props}
+              ></Contacto>
+            </React.Fragment>
+          )}></Route>
 
           { /* Componente: Productos */ }
           <Route exact path="/productos" render={(props) => (
-            <Productos
-                        // productos={resultado}
-                        // busquedaProducto={this.busquedaProducto}
-                        auth={auth} {...props}
-            ></Productos>
+            <React.Fragment>
+              {/* Componente: Navegacion */ }
+              <Navegacion
+                            auth={auth} {...props}
+              ></Navegacion>
+              {/* Componente: Productos */}
+              <Productos
+                          // productos={resultado}
+                          // busquedaProducto={this.busquedaProducto}
+                          auth={auth} {...props}
+              ></Productos>
+            </React.Fragment>
           )}></Route>
 
           { /* Componente: SingleProducto */ }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Producto from './../Producto/Producto';
 import Buscador from './../Buscador/Buscador';
+import Navegacion from './../Navegacion/Navegacion';
 import './Productos.css';
 
 import axios from 'axios';
@@ -23,6 +24,9 @@ class Productos extends Component {
         console.log('-------------');
         console.log('Después: accessToken');
         console.log('accessToken: ' + this.props.auth.accessToken);
+        let estado = this.props.auth.isAuthenticated();
+        console.log('Estado: ' + estado);
+        console.log('Productos: ' + this.props.auth.isAuthenticated());
     }
 
     queryAPI = () => {
@@ -48,6 +52,7 @@ class Productos extends Component {
 
         return(
             <div className="productos">
+                
                 {
                     isAuthenticated() && (
                         <React.Fragment>
