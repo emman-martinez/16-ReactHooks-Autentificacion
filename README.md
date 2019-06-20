@@ -14,4 +14,4 @@ ReactJS: Aplicación de Autentificación con Auth0, JWT y un Servidor Express (N
 ## Dependencias Servidor: Desarrollo
 ### babel-cli, babel-preset-env, babel-preset-stage-0
 
-'> npm install --save-dev babel-cli babel-preset-env babel-preset-stage-0 '
+'> npm install --save-dev babel-cli babel-preset-env babel-preset-stage-0 ' 
