@@ -42,6 +42,37 @@ class Productos extends Component {
             .then(respuesta => this.setState({productos: respuesta.data}));
     }
 
+    busquedaProducto = (busqueda) => {
+        // console.log(busqueda);
+        if(busqueda.length > 3) {
+
+            // Obtener copia del state
+            let productos = [...this.state.productos];
+            //console.log(productos);
+
+            // Filtrar
+            let resultado;
+            resultado = productos.filter(producto => (
+                producto.nombre.toLowerCase().indexOf(busqueda.toLowerCase()) !== -1 
+            ))
+           // console.log(resultado);
+
+            // Enviar al state los productos filtrados y la búsqueda
+            this.setState({
+                terminoBusqueda: busqueda,
+                productos: resultado
+            })
+
+            // console.log(this.state.terminoBusqueda);
+        } else {
+            this.setState({
+                terminoBusqueda: '',
+            }, () => {
+                this.queryAPI();
+            })
+        }
+    }
+
     login = () => {
         this.props.auth.login(); 
     }
@@ -59,7 +90,7 @@ class Productos extends Component {
                             <h2>Nuestros Productos</h2>
                             { /* Componente: Buscador */ }
                             <Buscador
-                                        busqueda={this.props.busquedaProducto}
+                                        busqueda={this.busquedaProducto}
                             ></Buscador>
                             <ul className="lista-productos">
                                 {Object.keys(this.state.productos).map(producto => (
